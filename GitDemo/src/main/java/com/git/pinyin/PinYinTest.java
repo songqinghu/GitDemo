@@ -18,11 +18,10 @@ public class PinYinTest {
     public static void main(String[] args) throws Exception {
         //wordToPY("瘦");
         //wordToPY("痩");
-        wordToPY("黭");
+        wordToPY("骉");
         //wordToPY("靁");
        // wordToPY("飝");
     }
-    
     /**
      * 
      * @描述：汉字变为拼音的测试类

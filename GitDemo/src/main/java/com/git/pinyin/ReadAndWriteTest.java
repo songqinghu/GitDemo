@@ -27,10 +27,20 @@ public class ReadAndWriteTest {
     
     public static void main(String[] args) throws IOException {
         String path  = "/pinyindb/gome_hanyu_pinyin_ext.txt";
-        //readText(path);
-        HashMap<String, String> map = new HashMap<String,String>();
-        map.put("E323", "hanzi,hanzi");
-        writeText(map);
+       // readText(path);
+       // HashMap<String, String> map = new HashMap<String,String>();
+       // map.put("我是好人", "wo");
+       // map.put("我", "wo");
+       // map.put("是", "shi");
+        //map.put("好", "hao,ren");
+        //writeText(map);
+        unicodeTohanzi("3007");  // 龦 9FA6 cháng
+    }
+    private static void unicodeTohanzi(String unicode){
+        
+        int code = Integer.parseInt(unicode, 16);
+        System.out.println((char)code);
+        
     }
     /**
      * 
@@ -44,11 +54,21 @@ public class ReadAndWriteTest {
      */
     public static void writeText(Map<String,String> content) throws IOException{
         String path = ReadAndWriteTest.class.getResource("/pinyindb/gome_hanyu_pinyin_ext.txt").getPath();
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path)));
+        System.out.println(path);
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true)));
         Set<Entry<String, String>> entrySet = content.entrySet();
         String line = null;
+        //writer.newLine();
         for (Entry<String, String> entry : entrySet) {
-            line = entry.getKey() +" " +entry.getValue();
+            String key = entry.getKey();
+            char[] charArray = key.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                if(i!=0){
+                    break;
+                }
+                key = Integer.toHexString(charArray[i]);
+            }
+            line = key +" (" +entry.getValue()+")";
             writer.write(line);
             writer.newLine();
         }
@@ -102,7 +122,5 @@ public class ReadAndWriteTest {
         }
         
     }
-    
-    
     
 }
