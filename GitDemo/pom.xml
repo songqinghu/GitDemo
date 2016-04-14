@@ -233,6 +233,8 @@
 	<groupId>com.chenlb.mmseg4j</groupId>
 	<artifactId>mmseg4j-analysis</artifactId>
 	<version>1.9.1</version>
-</dependency>
+	</dependency>
+	
+	
 	</dependencies>
 </project>
