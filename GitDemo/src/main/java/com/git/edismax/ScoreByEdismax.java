@@ -48,7 +48,7 @@ public class ScoreByEdismax {
         long pointMax = getMaxForField("point");
         long hotMax = getMaxForField("hot");
         
-        String scoreMethod = "sum(product(div(count,"+countMax+"),10),product(div(point,"+pointMax+"),45),product(div(hot,"+hotMax+"),45))^1000000000";
+        String scoreMethod = "sum(product(div(count,"+countMax+"),100),product(div(point,"+pointMax+"),450),product(div(hot,"+hotMax+"),450))^1000000000";
         
         SolrQuery query = new SolrQuery();
         query.set(CommonParams.Q, "国美*");
