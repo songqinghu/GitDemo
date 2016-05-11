@@ -87,7 +87,8 @@ public class ScoreByEdismax {
         
         SolrDocument maxCount = countResponse.getResults().get(0);
         
-        long result = (long) maxCount.getFieldValue(fieldName);
+/*        long result = (long) maxCount.getFieldValue(fieldName);*/
+        long result = 0l;
         System.out.println(fieldName + ":" + result);
         return result;
     }

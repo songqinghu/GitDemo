@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
+
 
 /**
  * 读取配置文件中信息到map中并且能够写入信息到文件中和map中
@@ -90,7 +90,7 @@ public class ReadAndWriteTest {
      * @throws IOException 
      */
     private static synchronized void readText(String path){
-        if(StringUtils.isNotBlank(path)){
+        if(path!=null && path.trim().length()>0){
             BufferedReader reader = new BufferedReader(new InputStreamReader(ReadAndWriteTest.class.getResourceAsStream(path)));
             if(reader != null){
                 String line=null;

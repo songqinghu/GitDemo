@@ -150,11 +150,11 @@
 		</dependency>
 
 		<!-- quartz -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.2.1</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -169,11 +169,11 @@
 			<artifactId>jedis</artifactId>
 			<version>2.7.2</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>io.terminus</groupId>
 			<artifactId>terminus-common</artifactId>
 			<version>1.2.1</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- zk -->
 		<dependency>
