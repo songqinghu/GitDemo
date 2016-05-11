@@ -8,7 +8,7 @@
   
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<solrVersion>5.1.0</solrVersion>
+		<solrVersion>5.5.0</solrVersion>
 		<spring.version>4.1.6.RELEASE</spring.version>
 	</properties>
 
