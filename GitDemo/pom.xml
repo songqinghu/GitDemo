@@ -31,11 +31,11 @@
 			<classifier>jdk15</classifier>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
-		</dependency>
+		</dependency> -->
 		<!-- log -->
 		<dependency>
 			<groupId>log4j</groupId>
