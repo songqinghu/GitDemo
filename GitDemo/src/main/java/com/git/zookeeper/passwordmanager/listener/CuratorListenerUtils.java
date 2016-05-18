@@ -1,6 +1,5 @@
 package com.git.zookeeper.passwordmanager.listener;
 
-import java.security.acl.Acl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -24,14 +23,12 @@ import org.apache.curator.framework.recipes.cache.TreeCacheEvent;
 import org.apache.curator.framework.recipes.cache.TreeCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.retry.RetryNTimes;
-import org.apache.solr.common.util.Cache;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooDefs.Perms;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
-import org.apache.zookeeper.data.Stat;
 
 /**
  * curator管理zookeeper的相关方法工具类
@@ -43,7 +40,6 @@ import org.apache.zookeeper.data.Stat;
  * 4.节点的访问控制ACL操作,密码的添加,修改-->连接中设置
  * 5.节点原子性操作
  * 6.节点的分布式锁操作
- * 7.分布式队列
  */
 public class CuratorListenerUtils {
 
