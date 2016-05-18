@@ -35,6 +35,7 @@ import org.apache.zookeeper.data.Stat;
  * 4.节点的访问控制ACL操作,密码的添加,修改
  * 5.节点原子性操作
  * 6.节点的分布式锁操作
+ * 7.分布式队列
  */
 public class ZookeeperCuratorUtils {
 
