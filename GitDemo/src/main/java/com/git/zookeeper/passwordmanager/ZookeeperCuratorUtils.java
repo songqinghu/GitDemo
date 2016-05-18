@@ -17,6 +17,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.retry.RetryNTimes;
+import org.apache.curator.utils.CloseableUtils;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs;
@@ -36,6 +37,17 @@ import org.apache.zookeeper.data.Stat;
  * 5.节点原子性操作
  * 6.节点的分布式锁操作
  * 7.分布式队列
+ * 
+ * 
+ * 锁：包括共享锁、共享可重入锁、读写锁等。
+ * 选举：Leader选举算法。
+ * Barrier：阻止分布式计算直至某个条件被满足的“栅栏”，可以看做JDK Concurrent包中Barrier的分布式实现。
+ * 缓存：前面提到过的三种Cache及监听机制。
+ * 持久化结点：连接或Session终止后仍然在Zookeeper中存在的结点。
+ * 队列：分布式队列、分布式优先级队列等。
+ *
+ * 
+ * 
  */
 public class ZookeeperCuratorUtils {
 
@@ -59,6 +71,8 @@ public class ZookeeperCuratorUtils {
       //  getDataNode(client, "/usermanager");
        // createNode(client, "/three/two/testone");
       //  deleteDataNode(client, "/three");;
+     // 释放客户端连接  
+        CloseableUtils.closeQuietly(client);  
     }
 
     /**
