@@ -1,4 +1,4 @@
-package com.git.base.link;
+package com.git.base.datastructure.link;
 
 /**
  * 

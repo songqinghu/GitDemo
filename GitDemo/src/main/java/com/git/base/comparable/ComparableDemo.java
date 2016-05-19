@@ -25,7 +25,7 @@ public class ComparableDemo {
 		list.add(new Student("王虎", 14, 80));
 		list.add(new Student("雷虎", 12, 90));
 		list.add(new Student("风虎", 15, 70));
-		list.add(new Student("宋庆虎", 11, 100));
+		list.add(new Student("虎", 11, 100));
 		list.add(new Student("赵虎", 13, 80));
 		
 		Collections.sort(list,new ComparatorStudent());

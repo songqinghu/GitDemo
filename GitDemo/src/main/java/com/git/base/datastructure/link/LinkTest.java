@@ -1,6 +1,4 @@
-package com.git.base.link;
-
-import com.git.base.link.LinkNode.Node;
+package com.git.base.datastructure.link;
 
 /**
  * 
