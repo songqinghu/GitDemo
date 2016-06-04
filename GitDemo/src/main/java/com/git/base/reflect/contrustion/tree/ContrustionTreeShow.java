@@ -163,16 +163,18 @@ public class ContrustionTreeShow {
         String value = "10";
         
         Field field = fieldMap.get(properties);
-        
         //使用set方法进行注入
         Object obj = clazz.newInstance();
         Class<?> type = field.getType();
+        System.out.println(type);
         
         //参数类型转换 设置 基本类型到 包装类的映射
         Class<?> wrap = Primitives.wrap(type);
-
         
-        setProperties(obj, properties, value, type);
+        Constructor<?> params = wrap.getConstructor(String.class);
+        Object v = params.newInstance(value);//将字符串转为数字
+        
+        setProperties(obj, properties, v, type);
         
         Object result = getProperties(obj, properties);
         System.out.println(result);
