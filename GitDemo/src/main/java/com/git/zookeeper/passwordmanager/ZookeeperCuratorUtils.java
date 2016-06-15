@@ -52,7 +52,7 @@ public class ZookeeperCuratorUtils {
     public static void main(String[] args) throws Exception {
        // nodesList(clientOne(), "/");
         CuratorFramework client = clientTwo();
-        //nodesList(client, "/");
+        nodesList(client, "/");
         //使用clientTwo来创建一个节点空间 查看是加密
        // createNode(client, "/usermanager");
         //setDataNode(client, "/usermanager", "test writer 测试写入效果!");
@@ -60,7 +60,7 @@ public class ZookeeperCuratorUtils {
        // createNode(client, "/three/two/testone");
       //  deleteDataNode(client, "/three");;
      // 释放客户端连接  
-        CloseableUtils.closeQuietly(client);  
+       // CloseableUtils.closeQuietly(client);  
     }
 
     /**
