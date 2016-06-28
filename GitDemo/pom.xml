@@ -307,12 +307,25 @@
     <artifactId>lucene-analyzers-common</artifactId>
     <version>5.5.0</version>
 </dependency>
+<dependency>
+    <groupId>org.apache.lucene</groupId>
+    <artifactId>lucene-analyzers-smartcn</artifactId>
+    <version>5.5.0</version>
+</dependency>
+
 <!--         <dependency>
     <groupId>org.apache.lucene</groupId>
     <artifactId>lucene-queryparser</artifactId>
     <version>5.5.0</version>
 </dependency> -->
 		<!-- analyzer end  -->
+		<!-- rabbitmq start -->
+				<dependency>
+		       <groupId>com.rabbitmq</groupId>
+		       <artifactId>amqp-client</artifactId>
+		       <version>3.5.3</version>
+		      </dependency>
+		<!-- rabbitmq end -->
 	</dependencies>
 	
 	
