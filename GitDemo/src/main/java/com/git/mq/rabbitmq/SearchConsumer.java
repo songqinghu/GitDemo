@@ -7,7 +7,7 @@ import com.rabbitmq.client.QueueingConsumer;
 
 public class SearchConsumer {
 
-    private static final String EXCHANGE_NAME = "topic_test";  
+    private static final String EXCHANGE_NAME = "topic_direct";  
     
     public static void main(String[] argv) throws Exception  
     {  
@@ -21,12 +21,13 @@ public class SearchConsumer {
         Connection connection = factory.newConnection();  
         Channel channel = connection.createChannel();   
         // 声明转发器  
-        channel.exchangeDeclare(EXCHANGE_NAME, "topic");  
+        channel.exchangeDeclare(EXCHANGE_NAME, "direct");  
         // 随机生成一个队列  
         String queueName = channel.queueDeclare().getQueue();  
+        //String queueName = "ic_data_queue";
           
         //接收所有与kernel相关的消息  
-        channel.queueBind(queueName, EXCHANGE_NAME, "user.info.*");  
+        channel.queueBind(queueName, EXCHANGE_NAME, "user.info.group");  
   
         System.out.println(" [*] Waiting for messages about search. To exit press CTRL+C");  
   

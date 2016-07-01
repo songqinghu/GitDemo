@@ -12,16 +12,7 @@ public class TestPageProcessor implements PageProcessor{
 
     @Override
     public void process(Page page) {
-        page.putField("author", page.getUrl().regex("https://github\\.com/(\\w+)/.*").toString());
-        page.putField("name", page.getHtml().xpath("//h1[@class='entry-title public']/strong/a/text()").toString());
-        if (page.getResultItems().get("name")==null){
-            //skip this page
-            page.setSkip(true);
-        }
-        page.putField("readme", page.getHtml().xpath("//div[@id='readme']/tidyText()"));
-        
-        
-        page.addTargetRequests(page.getHtml().links().regex("(https://github\\.com/\\w+/\\w+)").all());
+      System.out.println(page);
     }
 
     @Override
@@ -30,8 +21,7 @@ public class TestPageProcessor implements PageProcessor{
     }
 
     public static void main(String[] args) {
-        //http://www.2cto.com
-        Spider.create(new TestPageProcessor()).addUrl("https://github.com/code4craft").
+        Spider.create(new TestPageProcessor()).addUrl("http://moc.oocl.com/party/cargotracking/ct_search_from_other_domain.jsf?ANONYMOUS_TOKEN=WmdzsywopBbgzIseLGwfMCCOOCL&ENTRY=MCC&ENTRY_TYPE=OOCL&PREFER_LANGUAGE=en-US").
         addPipeline(new ConsolePipeline()).thread(5).run();
     }
 }

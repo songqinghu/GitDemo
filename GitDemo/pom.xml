@@ -300,7 +300,7 @@
 		    <artifactId>webmagic-extension</artifactId>
 		    <version>0.5.3</version>
 		</dependency>
-		
+
 		<!-- analyzer start  -->
 <dependency>
     <groupId>org.apache.lucene</groupId>
