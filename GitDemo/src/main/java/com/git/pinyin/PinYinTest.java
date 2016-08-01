@@ -17,9 +17,20 @@ public class PinYinTest {
     public static void main(String[] args) throws Exception {
         //wordToPY("瘦");
         //wordToPY("痩");
-        wordToPY("骉");
+       // wordToPY("骉");
         //wordToPY("靁");
        // wordToPY("飝");
+        //wordToPY("长沙市长");
+        long start = System.currentTimeMillis();
+        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+        format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        for (int i = 0; i < 100; i++) {
+            char[] charArray = "长沙市长".toCharArray();
+           // String hanYuPinyinString = PinyinHelper.toHanYuPinyinString("长沙市长", format, "", false);
+           // System.out.println(strs);
+            System.out.println(System.currentTimeMillis()  -start);
+        }
     }
     /**
      * 
