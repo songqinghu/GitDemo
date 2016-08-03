@@ -25,11 +25,6 @@
 			<classifier>jdk15</classifier>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency> -->
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -141,11 +136,6 @@
 			<artifactId>jedis</artifactId>
 			<version>2.7.2</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>io.terminus</groupId>
-			<artifactId>terminus-common</artifactId>
-			<version>1.2.1</version>
-		</dependency> -->
 
 		<!-- zk -->
 		<dependency>
@@ -186,11 +176,8 @@
 	<artifactId>commons-logging</artifactId>
 	<version>1.2</version>
 	</dependency> 
-	<dependency>
-	<groupId>com.chenlb.mmseg4j</groupId>
-	<artifactId>mmseg4j-analysis</artifactId>
-	<version>1.9.1</version>
-	</dependency>
+	
+
 	<!-- java mail -->
 	<dependency>
 	<groupId>javax.mail</groupId>
@@ -263,13 +250,6 @@
 		</dependency>
 		<!-- zk 连接客户端 end -->
 		
-		<!-- memcache start -->
-<!--       <dependency>
-        <groupId>com.danga</groupId>
-        <artifactId>java-memcached</artifactId>
-        <version>2.6.6</version>
-      </dependency> -->
-      <!-- memcache end -->
       
       <!-- mysql-connector-java -->
 		<dependency>
@@ -278,11 +258,6 @@
 		    <version>5.1.25</version>
 		</dependency>
 		<!-- cglib 动态代理 -->
-<!-- 		<dependency>
-		    <groupId>cglib</groupId>
-		    <artifactId>cglib</artifactId>
-		    <version>2.2.2</version>
-		</dependency> -->
 		<dependency>
 		    <groupId>cglib</groupId>
 		    <artifactId>cglib-nodep</artifactId>
@@ -313,11 +288,16 @@
     <version>5.5.0</version>
 </dependency>
 
-<!--         <dependency>
+         <dependency>
     <groupId>org.apache.lucene</groupId>
     <artifactId>lucene-queryparser</artifactId>
     <version>5.5.0</version>
-</dependency> -->
+</dependency>
+<!-- 	<dependency>
+<groupId>com.chenlb.mmseg4j</groupId>
+	<artifactId>mmseg4j-analysis</artifactId>
+	<version>1.9.1</version>
+	</dependency> -->
 		<!-- analyzer end  -->
 		<!-- rabbitmq start -->
 				<dependency>
@@ -326,6 +306,15 @@
 		       <version>3.5.3</version>
 		      </dependency>
 		<!-- rabbitmq end -->
+		
+		<!-- nlp start-->
+		    <dependency>
+        <groupId>com.hankcs</groupId>
+        <artifactId>hanlp</artifactId>
+        <version>portable-1.2.4</version>
+    </dependency>
+    <!-- nlp end --> 
+		
 	</dependencies>
 	
 	

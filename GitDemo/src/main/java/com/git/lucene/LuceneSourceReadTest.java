@@ -15,9 +15,7 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
@@ -30,8 +28,6 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-
-import com.chenlb.mmseg4j.analysis.MMSegAnalyzer;
 
 /**
  * 使用lucene进行索引的增删改查时 观察具体的源码执行过程
@@ -201,15 +197,18 @@ public class LuceneSourceReadTest {
      * @throws ParseException 
      */
     public static void parseQuery() throws ParseException{
+        /**
+         * 依赖的包发生变化
+         */
         //指定单个查询域
-        QueryParser parser = new QueryParser(Version.LUCENE_CURRENT, "content", new MMSegAnalyzer());
-        Query parse = parser.parse("美信网络科技有限公司是国美集团旗下的全资控股的子公司");
-        System.out.println(parse);
-        //指定多个查询域
-        String[] fields = new  String[]{"content","fileName"};
-        MultiFieldQueryParser multiParser = new MultiFieldQueryParser(Version.LUCENE_CURRENT, fields, new MMSegAnalyzer());
-        Query parse2 = multiParser.parse("美信网络科技有限公司是国美集团旗下的全资控股的子公司");
-        System.out.println(parse2);
+//        QueryParser parser = new QueryParser(Version.LUCENE_CURRENT, "content", new MMSegAnalyzer());
+//        Query parse = parser.parse("美信网络科技有限公司是国美集团旗下的全资控股的子公司");
+//        System.out.println(parse);
+//        //指定多个查询域
+//        String[] fields = new  String[]{"content","fileName"};
+//        MultiFieldQueryParser multiParser = new MultiFieldQueryParser(Version.LUCENE_CURRENT, fields, new MMSegAnalyzer());
+//        Query parse2 = multiParser.parse("美信网络科技有限公司是国美集团旗下的全资控股的子公司");
+//        System.out.println(parse2);
     }
     
     
@@ -236,7 +235,8 @@ public class LuceneSourceReadTest {
      */
     private static IndexSearcher getSearcher() throws Exception{
         
-     Directory directory  = FSDirectory.open(new File("E:\\lucene\\index")) ;
+     Directory directory  = null;
+         //    FSDirectory.open(new File("E:\\lucene\\index")) ;
    
      DirectoryReader reader = DirectoryReader.open(directory);
        
@@ -329,14 +329,15 @@ public class LuceneSourceReadTest {
     
     private static  IndexWriter getIndexWriter() throws Exception{
         //索引存放
-        Directory d = FSDirectory.open(new File("E:\\lucene\\index")) ;
-        //分词器
-        Analyzer analyzer  = new MMSegAnalyzer();
-        //写入设置
-        IndexWriterConfig conf = new  IndexWriterConfig(Version.LUCENE_CURRENT, analyzer);
-        //写入器
-        IndexWriter indexWriter = new IndexWriter(d, conf);
-        
-        return indexWriter;
+//        Directory d = FSDirectory.open(new File("E:\\lucene\\index")) ;
+//        //分词器
+//        Analyzer analyzer  = new MMSegAnalyzer();
+//        //写入设置
+//        IndexWriterConfig conf = new  IndexWriterConfig(Version.LUCENE_CURRENT, analyzer);
+//        //写入器
+//        IndexWriter indexWriter = new IndexWriter(d, conf);
+//        
+//        return indexWriter;
+        return null;
     }
 }
