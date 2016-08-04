@@ -5,8 +5,8 @@ import org.apache.solr.client.solrj.impl.CloudSolrClient;
 
 public class SolrClientUitls {
 
-    private static SolrClient client = null;
-    public static SolrClient getClient(){
+    private static CloudSolrClient client = null;
+    public static CloudSolrClient getClient(){
         if(client ==null){
             String zkUrl = "192.168.119.20:2181,192.168.119.21:2181";
             CloudSolrClient cloudSolrClient = new  CloudSolrClient(zkUrl);

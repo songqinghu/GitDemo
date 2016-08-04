@@ -14,9 +14,9 @@ CREATE TABLE `prepic` (
   `pre_id` bigint(20) NOT NULL AUTO_INCREMENT comment '这是副表主键',
   `web_id` bigint(20) NOT NULL  comment '抓取的web站点对应的Id,对应web站点信息表,区分抓取站点的信息',
   `pictype` bigint(3) DEFAULT NULL comment '图片类型,依赖图片类型表',
-  `name` varchar(50) DEFAULT NULL comment '显示图片的名称',
-  `url` varchar(50) DEFAULT NULL   comment '下轮抓取的基础URL',
-  `murl` varchar(50) DEFAULT NULL   comment '小图片的URL,用于列表展示',
+  `name` varchar(100) DEFAULT NULL comment '显示图片的名称',
+  `url` varchar(100) DEFAULT NULL   comment '下轮抓取的基础URL',
+  `murl` varchar(100) DEFAULT NULL   comment '小图片的URL,用于列表展示',
   `cratedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  comment '抓取时的创建时间',
   `flag` int(11) DEFAULT '0'  comment '标识位,是否可用',
   PRIMARY KEY (`pre_id`)
