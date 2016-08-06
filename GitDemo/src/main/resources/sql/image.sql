@@ -72,7 +72,15 @@ CREATE TABLE `webspiderinfo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-
+DROP TABLE IF EXISTS `pretimecount`;
+CREATE TABLE `pretimecount` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT comment '统计表id',
+  `pre_id` bigint(20) NOT NULL  comment '从表id',
+  `lookcount` bigint(20) DEFAULT 1 comment '观看次数',
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  comment '更新时间创建时间',
+  `flag` int(11) DEFAULT '0'  comment '标识位,是否可用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
