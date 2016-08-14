@@ -83,7 +83,15 @@ CREATE TABLE `pretimecount` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-
+DROP TABLE IF EXISTS `appversion`;
+CREATE TABLE `appversion` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT comment 'id',
+  `version` bigint(20) NOT NULL  comment '版本号',
+  `bak` VARCHAR(50) DEFAULT '' comment '备注',
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  comment '更新时间创建时间',
+  `flag` int(11) DEFAULT '0'  comment '标识位,是否可用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
