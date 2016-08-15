@@ -33,10 +33,10 @@ public class TokenizerTreatsTextDemo {
     @Test //报错
     public void analyzer() throws IOException, ParseException, org.apache.lucene.queryparser.classic.ParseException{
         
-        String s = "更加厉害了";  
+        String s = "更加厉害了,你能想得到嘛";  
         StringReader sr = new StringReader(s);    
         //N-gram模型分词器  
-        Tokenizer tokenizer = new NGramTokenizer(1, 10);
+        Tokenizer tokenizer = new NGramTokenizer(2, 5);
         tokenizer.setReader(sr);
         //Edge-NGram 边缘模型，范围模型分词器  
         //Tokenizer tokenizer=new EdgeNGramTokenizer(Version.LUCENE_46, sr, 1, 10);       
@@ -70,10 +70,10 @@ public class TokenizerTreatsTextDemo {
                 OffsetAttribute offsetAttribute=tokenizer.addAttribute(OffsetAttribute.class);  
                 TypeAttribute typeAttribute = tokenizer.addAttribute(TypeAttribute.class);  
                 //System.out.println(attribute.toString());  
-                System.out.println("term="+charTermAttribute.toString()+","+offsetAttribute.startOffset()+"-"+offsetAttribute.endOffset()  
-                        +",type="+typeAttribute.type()+",PositionIncrement="+positionIncrementAttribute.getPositionIncrement()  
-                        +",PositionLength="+positionLengthAttribute.getPositionLength());  
-                  
+//                System.out.println("term="+charTermAttribute.toString()+","+offsetAttribute.startOffset()+"-"+offsetAttribute.endOffset()  
+//                        +",type="+typeAttribute.type()+",PositionIncrement="+positionIncrementAttribute.getPositionIncrement()  
+//                        +",PositionLength="+positionLengthAttribute.getPositionLength());  
+               System.out.println(charTermAttribute.toString());   
             }             
             tokenizer.end();  
             tokenizer.close();  

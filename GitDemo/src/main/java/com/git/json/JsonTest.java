@@ -1,6 +1,8 @@
 package com.git.json;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -12,8 +14,27 @@ public class JsonTest {
 
     public static void main(String[] args) {
         
-        two();
+        four();
     }
+    
+    private static void four(){
+        
+        String b = "{\"meixin_shop\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"active\",\"core\":\"meixin_shop\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\",\"leader\":\"true\"},\"core_node2\":{\"state\":\"down\",\"core\":\"meixin_shop\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"},\"meixin_suggest\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"down\",\"core\":\"meixin_suggest_shard1_replica1\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"},\"core_node2\":{\"state\":\"active\",\"core\":\"meixin_suggest_shard1_replica2\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\",\"leader\":\"true\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"},\"meixin_topic\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"down\",\"core\":\"meixin_topic_shard1_replica1\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"},\"core_node2\":{\"state\":\"active\",\"core\":\"meixin_topic_shard1_replica2\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\",\"leader\":\"true\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"},\"meixin_product\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"active\",\"core\":\"meixin_product\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\",\"leader\":\"true\"},\"core_node2\":{\"state\":\"down\",\"core\":\"meixin_product\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"},\"meixin_vshop_product\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"down\",\"core\":\"meixin_vshop_product\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\"},\"core_node2\":{\"state\":\"down\",\"core\":\"meixin_vshop_product\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"},\"meixin_user\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"active\",\"core\":\"meixin_user_shard1_replica2\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\",\"leader\":\"true\"},\"core_node2\":{\"state\":\"down\",\"core\":\"meixin_user_shard1_replica1\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"},\"meixin_group\":{\"shards\":{\"shard1\":{\"range\":\"80000000-7fffffff\",\"state\":\"active\",\"replicas\":{\"core_node1\":{\"state\":\"down\",\"core\":\"meixin_group_shard1_replica1\",\"node_name\":\"10.125.2.45:8001_solr\",\"base_url\":\"http://10.125.2.45:8001/solr\"},\"core_node2\":{\"state\":\"active\",\"core\":\"meixin_group_shard1_replica2\",\"node_name\":\"10.125.2.44:8001_solr\",\"base_url\":\"http://10.125.2.44:8001/solr\",\"leader\":\"true\"}}}},\"maxShardsPerNode\":\"1\",\"router\":{\"name\":\"compositeId\"},\"replicationFactor\":\"1\",\"autoAddReplicas\":\"false\",\"autoCreated\":\"true\"}}";
+        
+        String setting = new String(b).replace("\n", "").replace("\r", "");
+        Pattern p = Pattern.compile("\"state\":\"(.+?)\".+?\"core\":\"(.+?)\".+?\"node_name\":\"(.+?)\"");
+        Matcher matcher = p.matcher(setting);
+    
+    }
+    
+    private static void three(){
+        String json = "{\"id\":\"57abd3774b70a411766eef6c\",\"send_time\":1470878619441,\"data\":{\"id\":\"57abd3774b70a411766eef6c\",\"updateOperator\":\"1419\",\"imId\":\"b_1465\",\"groupId\":\"mx14191467084714511\",\"createTime\":1470878583893,\"createOperator\":\"1465\",\"groupPersonId\":1465,\"updateTime\":1470878619000,\"states\":2,\"role\":1,\"isTrue\":0,\"isRemind\":1},\"action\":\"CREATE\",\"type\":\"social.groupPersons\"}";
+        
+        String string = net.sf.json.JSONObject.fromObject(json).getJSONObject("data").getString("groupId");
+        System.out.println(string);
+        
+    }
+    
     
     private static  void two(){
         //将此json转换为实体操作类list中

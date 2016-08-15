@@ -19,7 +19,8 @@ CREATE TABLE `prepic` (
   `murl` varchar(100) DEFAULT NULL   comment '小图片的URL,用于列表展示',
   `cratedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  comment '抓取时的创建时间',
   `flag` int(11) DEFAULT '0'  comment '标识位,是否可用',
-  PRIMARY KEY (`pre_id`)
+  PRIMARY KEY (`pre_id`),
+  unique key index_region_name(`url`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Table structure for ctomainpic
@@ -33,7 +34,8 @@ CREATE TABLE `mainpic` (
   `url` varchar(100) DEFAULT NULL  comment '详情页图片地址',
   `cratedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  comment '创建时间',
   `flag` int(11) DEFAULT '0'  comment '图片标示位,默认可用',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  unique key index_region_name(`url`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
