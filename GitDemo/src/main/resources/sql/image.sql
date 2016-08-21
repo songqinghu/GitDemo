@@ -16,7 +16,7 @@ CREATE TABLE `prepic` (
   `pictype` bigint(3) DEFAULT NULL comment '图片类型,依赖图片类型表',
   `name` varchar(100) DEFAULT NULL comment '显示图片的名称',
   `url` varchar(100) DEFAULT NULL   comment '下轮抓取的基础URL',
-  `murl` varchar(100) DEFAULT NULL   comment '小图片的URL,用于列表展示',
+  `murl` varchar(200) DEFAULT NULL   comment '小图片的URL,用于列表展示',
   `cratedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  comment '抓取时的创建时间',
   `flag` int(11) DEFAULT '0'  comment '标识位,是否可用',
   PRIMARY KEY (`pre_id`),
