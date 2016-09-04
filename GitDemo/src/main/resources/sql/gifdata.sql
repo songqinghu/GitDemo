@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2016-08-30 23:47:31
+Date: 2016-09-04 16:24:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,13 +23,14 @@ CREATE TABLE `gwebinfo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '抓取动态图web站点标识id',
   `location` varchar(50) DEFAULT NULL COMMENT '抓取站点的url主地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of gwebinfo
 -- ----------------------------
 INSERT INTO `gwebinfo` VALUES ('1', 'http://www.kx1d.com');
 INSERT INTO `gwebinfo` VALUES ('2', 'http://www.qqszc.com');
+INSERT INTO `gwebinfo` VALUES ('3', 'http://www.youqu.net');
 
 -- ----------------------------
 -- Table structure for gwebspiderinfo
@@ -40,7 +41,7 @@ CREATE TABLE `gwebspiderinfo` (
   `gweb_id` varchar(50) DEFAULT NULL COMMENT '站点id',
   `url` varchar(50) DEFAULT NULL COMMENT '抓取的url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of gwebspiderinfo
@@ -51,3 +52,4 @@ INSERT INTO `gwebspiderinfo` VALUES ('3', '2', 'http://www.qqszc.com/dongtaitupi
 INSERT INTO `gwebspiderinfo` VALUES ('4', '2', 'http://www.qqszc.com/meinvdongtaitu/');
 INSERT INTO `gwebspiderinfo` VALUES ('5', '2', 'http://www.qqszc.com/luguandongtaitu/');
 INSERT INTO `gwebspiderinfo` VALUES ('6', '2', 'http://www.qqszc.com/papapadongtaitu/');
+INSERT INTO `gwebspiderinfo` VALUES ('7', '3', 'http://www.youqu.net/xieedongtaitu/');
