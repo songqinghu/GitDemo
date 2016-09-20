@@ -27,7 +27,9 @@ CREATE TABLE `pregif` (
   `murl` varchar(200) DEFAULT NULL COMMENT '预处理页的URL,暂时不用',
   `cratedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
+  `count` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`pre_id`),
   UNIQUE KEY `index_region_name` (`url`),
-  KEY `pre_id` (`pre_id`,`gweb_id`,`url`,`cratedate`,`flag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `pre_id` (`pre_id`,`gweb_id`,`url`,`cratedate`,`flag`),
+  KEY `index_name` (`count`)
+) ENGINE=InnoDB AUTO_INCREMENT=25131 DEFAULT CHARSET=utf8;

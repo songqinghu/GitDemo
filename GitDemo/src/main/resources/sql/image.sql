@@ -68,10 +68,12 @@ CREATE TABLE `prepic` (
   `murl` varchar(200) DEFAULT NULL COMMENT '小图片的URL,用于列表展示',
   `cratedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
+  `count` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`pre_id`),
   UNIQUE KEY `index_region_name` (`url`),
-  KEY `pre_id` (`pre_id`,`web_id`,`pictype`,`url`,`cratedate`,`flag`)
-) ENGINE=InnoDB AUTO_INCREMENT=18389 DEFAULT CHARSET=utf8;
+  KEY `pre_id` (`pre_id`,`web_id`,`pictype`,`url`,`cratedate`,`flag`),
+  KEY `index_name` (`count`)
+) ENGINE=InnoDB AUTO_INCREMENT=19244 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for pretimecount

@@ -1,6 +1,8 @@
 package com.git.json;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,8 +16,26 @@ public class JsonTest {
 
     public static void main(String[] args) {
         
-        four();
+        six();
     }
+    
+    private static void six(){
+        String json = 
+                "{\"success\":true,\"code\":200,\"totalCount\":2,\"data\":[{\"dist\":\"31\",\"latitude\":13.6,\"longtitude\":16.6,\"userId\":\"117\",\"userName\":\"czl_create\",\"userPic\":\"T1xaCTB5CT1R4cSCrK.png\"},{\"dist\":\"10623.9\",\"latitude\":16.6,\"longtitude\":116.457,\"userId\":\"627\",\"userName\":\"GM_751454311538391\",\"userPic\":\"T1xaCTB5CT1R4cSCrK.png\"}]}"
+                ;
+        JSONObject oResult = JSON.parseObject(json);
+        JSONArray users = oResult.getJSONArray("data");
+        Long totalCount = oResult.getLong("totalCount");
+        
+        JSONObject data = new JSONObject();
+        data.put("totalCount", totalCount);
+        data.put("users", users);
+        JSONObject result = new JSONObject();
+        result.put("message", "");
+        result.put("data", data);
+        System.out.println(result);
+    }
+    
     
     private static void four(){
         
