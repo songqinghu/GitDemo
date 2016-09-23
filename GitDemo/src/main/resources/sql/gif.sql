@@ -32,4 +32,4 @@ CREATE TABLE `pregif` (
   UNIQUE KEY `index_region_name` (`url`),
   KEY `pre_id` (`pre_id`,`gweb_id`,`url`,`cratedate`,`flag`),
   KEY `index_name` (`count`)
-) ENGINE=InnoDB AUTO_INCREMENT=25131 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
