@@ -73,7 +73,7 @@ CREATE TABLE `prepic` (
   UNIQUE KEY `index_region_name` (`url`),
   KEY `pre_id` (`pre_id`,`web_id`,`pictype`,`url`,`cratedate`,`flag`),
   KEY `index_name` (`count`)
-) ENGINE=InnoDB AUTO_INCREMENT=19244 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for pretimecount
