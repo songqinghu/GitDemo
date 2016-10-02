@@ -117,7 +117,7 @@ public class BayesClassifier
 	public static void main(String[] args)
 	{
 		String text =
-				"今年广州市所有高考考场将实现网上巡考，高考将更加“阳光”。昨日（9日），广州市招办有关负责人透露，今年广州将新增一批考场，目前具体数量还在审批中，其中萝岗区、南沙区等新行政区均新设高考考场。所有考场将全部实现网上巡考。据介绍，广州市去年56个考场已经有36个考场实现了网上巡考，考官只要走进广州市招生办的指挥平台，就可以将全市36个考场内的所有动向“一网打尽”。随着技术升级，尽管今年将新增考点、考场，但广州市仍有能力对所有考场实现网上巡考";
+				"Markdown 是一种简单的标记语言，旨在帮助你花费更小的代价来格式化纯文本文档。在 WordPress 下你可以使用 HTML 或者可视化编辑器来格式化你的文档，但是使用 markdown 可以让格式化文档变得更加容易，而且你随时可以导出成很多种格式，包括(但不限于)HTML。";
 		BayesClassifier classifier = new BayesClassifier();////构造Bayes分类器
 		String result = classifier.classify(text);//进行分类
 		System.out.println("此项属于["+result+"]");
