@@ -53,3 +53,63 @@ INSERT INTO `booktype` VALUES ('7', '历史军事');
 INSERT INTO `booktype` VALUES ('8', '游戏竞技');
 INSERT INTO `booktype` VALUES ('9', '耽美同人');
 
+
+-- ----------------------------
+-- 图书内容页
+-- ----------------------------
+DROP TABLE IF EXISTS `bookcontent`;
+CREATE TABLE `bookcontent` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '章节内容,主键id',
+  `intro_id` bigint(20) NOT NULL COMMENT '图书id,关联图书表',
+  `chapter_id` bigint(20) DEFAULT NULL COMMENT '章节id关联章节表',
+  `content` MEDIUMBLOB DEFAULT NULL COMMENT '详情页展示名称',
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `flag` int(11) DEFAULT '0' COMMENT '标示位,默认可用',
+  PRIMARY KEY (`id`),
+  KEY `pre_id` (`intro_id`,`chapter_id`,`updatedate`,`flag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- 图书章节目录
+-- ----------------------------
+DROP TABLE IF EXISTS `bookchapter`;
+CREATE TABLE `bookchapter` (
+  `chapter_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `intro_id` bigint(20) NOT NULL COMMENT '图书介绍id--对应相应的书籍',
+  `name` varchar(100) DEFAULT NULL COMMENT '章节名称',
+  `url` varchar(100) DEFAULT NULL COMMENT '章节内容的url,对应要抓取的章节内容',
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
+  `count` bigint(20) NOT NULL DEFAULT '0'  COMMENT '该章节点击次数,统计展示使用',
+  `isspider` bigint(20) NOT NULL DEFAULT '0'  COMMENT '是否被抓取了,0未抓取,1抓取',
+  PRIMARY KEY (`chapter_id`),
+  UNIQUE KEY `index_region_name` (`url`),
+  KEY `pre_id` (`intro_id`,`name`,`url`,`updatedate`,`flag`,isspider),
+  KEY `index_name` (`count`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+-- 图书简介页展示
+-- ----------------------------
+DROP TABLE IF EXISTS `introbook`;
+CREATE TABLE `introbook` (
+  `intro_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键,这本书唯一标识',
+  `bweb_id` bigint(20) NOT NULL COMMENT '抓取的web站点对应的Id,对应web站点信息表,区分抓取站点的信息',
+  `name` varchar(100) DEFAULT NULL COMMENT '图书名称',
+  `author` varchar(100) DEFAULT NULL COMMENT '作者',
+  `booktype` varchar(100) DEFAULT NULL COMMENT '图书类型',
+  `isend` bigint(2) DEFAULT '0' COMMENT '是否结束,0,未结束,1结束',
+  `newchapter` varchar(100) DEFAULT NULL COMMENT '最新章节名称',
+  `url` varchar(100) DEFAULT NULL COMMENT  '下轮抓取图书章节列表的URL',
+  `pic`  MEDIUMBLOB DEFAULT NULL COMMENT '图书图片展示',
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
+  `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
+  PRIMARY KEY (`intro_id`),
+  UNIQUE KEY `index_region_name` (`url`),
+  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+
