@@ -1,3 +1,4 @@
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -21,7 +22,7 @@ INSERT INTO `bookwebinfo` VALUES ('1', 'http://m.biquge.com');
 DROP TABLE IF EXISTS `bookwebspiderinfo`;
 CREATE TABLE `bookwebspiderinfo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `emailweb_id` varchar(50) DEFAULT NULL COMMENT '站点id',
+  `bookweb_id` varchar(50) DEFAULT NULL COMMENT '站点id',
   `url` varchar(150) DEFAULT NULL COMMENT '抓取的url',
    `booktype` bigint(2) DEFAULT NULL COMMENT '图书类型id',
   PRIMARY KEY (`id`)
@@ -92,8 +93,8 @@ CREATE TABLE `bookchapter` (
 -- ----------------------------
 -- 图书简介页展示
 -- ----------------------------
-DROP TABLE IF EXISTS `introbook`;
-CREATE TABLE `introbook` (
+DROP TABLE IF EXISTS `bookintro`;
+CREATE TABLE `bookintro` (
   `intro_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键,这本书唯一标识',
   `bweb_id` bigint(20) NOT NULL COMMENT '抓取的web站点对应的Id,对应web站点信息表,区分抓取站点的信息',
   `name` varchar(100) DEFAULT NULL COMMENT '图书名称',
@@ -109,7 +110,3 @@ CREATE TABLE `introbook` (
   UNIQUE KEY `index_region_name` (`url`),
   KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
-
-
