@@ -107,7 +107,8 @@ CREATE TABLE `bookintro` (
   `show_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片展示地址',
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
+  `isspider` int(11) DEFAULT '0' COMMENT '是否爬取过章节目录,默认未爬取',
   PRIMARY KEY (`intro_id`),
   UNIQUE KEY `index_region_name` (`url`),
-  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`)
+  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`,isspider)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
