@@ -90,7 +90,6 @@ CREATE TABLE `bookchapter` (
   KEY `index_name` (`count`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-
 -- ----------------------------
 -- 图书简介页展示
 -- ----------------------------
@@ -104,7 +103,8 @@ CREATE TABLE `bookintro` (
   `isend` bigint(2) DEFAULT '0' COMMENT '是否结束,0,未结束,1结束',
   `newchapter` varchar(100) DEFAULT NULL COMMENT '最新章节名称',
   `url` varchar(100) DEFAULT NULL COMMENT  '下轮抓取图书章节列表的URL',
-  `pic`  MEDIUMBLOB DEFAULT NULL COMMENT '图书图片展示',
+  `old_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片原始地址',
+  `show_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片展示地址',
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
   PRIMARY KEY (`intro_id`),
