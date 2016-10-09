@@ -82,6 +82,7 @@ CREATE TABLE `bookchapter` (
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
   `count` bigint(20) NOT NULL DEFAULT '0'  COMMENT '该章节点击次数,统计展示使用',
+  `number` bigint(20) NOT NULL DEFAULT '0'  COMMENT '该章节再此本书中的位置,递增,用于排序',
   `isspider` bigint(20) NOT NULL DEFAULT '0'  COMMENT '是否被抓取了,0未抓取,1抓取',
   PRIMARY KEY (`chapter_id`),
   UNIQUE KEY `index_region_name` (`url`),
