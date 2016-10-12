@@ -63,6 +63,7 @@ CREATE TABLE `bookcontent` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '章节内容,主键id',
   `intro_id` bigint(20) NOT NULL COMMENT '图书id,关联图书表',
   `chapter_id` bigint(20) DEFAULT NULL COMMENT '章节id关联章节表',
+  `name` varchar(100) DEFAULT NULL COMMENT '章节标题',
   `content` MEDIUMBLOB DEFAULT NULL COMMENT '详情页展示名称',
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `flag` int(11) DEFAULT '0' COMMENT '标示位,默认可用',
