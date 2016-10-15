@@ -110,6 +110,7 @@ CREATE TABLE `bookintro` (
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
   `isspider` int(11) DEFAULT '0' COMMENT '是否爬取过章节目录,默认未爬取',
+  `preIntro_id` int(11) DEFAULT '0' COMMENT '对于同一本书,后抓取的标注出来前一本书的intro_id',
   PRIMARY KEY (`intro_id`),
   UNIQUE KEY `index_region_name` (`url`),
   KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`,isspider)
