@@ -103,7 +103,8 @@ CREATE TABLE `bookintro` (
   `booktype` varchar(100) DEFAULT NULL COMMENT '图书类型',
   `introInfo` varchar(1000) DEFAULT NULL COMMENT '图书简介',
   `isend` bigint(2) DEFAULT '0' COMMENT '是否结束,0,未结束,1结束',
-  `newchapter` varchar(100) DEFAULT NULL COMMENT '最新章节名称',
+  `newchapter` varchar(100) DEFAULT '' COMMENT '最新章节名称',
+  `newchapterId` bigint(20) DEFAULT '0' COMMENT '最新章节对应id',
   `url` varchar(100) DEFAULT NULL COMMENT  '下轮抓取图书章节列表的URL',
   `old_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片原始地址',
   `show_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片展示地址',
@@ -113,5 +114,5 @@ CREATE TABLE `bookintro` (
   `preIntro_id` int(11) DEFAULT '0' COMMENT '对于同一本书,后抓取的标注出来前一本书的intro_id',
   PRIMARY KEY (`intro_id`),
   UNIQUE KEY `index_region_name` (`url`),
-  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`,isspider)
+  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`,isspider,newchapterId)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
