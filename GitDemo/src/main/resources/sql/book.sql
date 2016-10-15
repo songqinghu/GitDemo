@@ -101,6 +101,7 @@ CREATE TABLE `bookintro` (
   `name` varchar(100) DEFAULT NULL COMMENT '图书名称',
   `author` varchar(100) DEFAULT NULL COMMENT '作者',
   `booktype` varchar(100) DEFAULT NULL COMMENT '图书类型',
+  `introInfo` varchar(1000) DEFAULT NULL COMMENT '图书简介',
   `isend` bigint(2) DEFAULT '0' COMMENT '是否结束,0,未结束,1结束',
   `newchapter` varchar(100) DEFAULT NULL COMMENT '最新章节名称',
   `url` varchar(100) DEFAULT NULL COMMENT  '下轮抓取图书章节列表的URL',
