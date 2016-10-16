@@ -28,10 +28,7 @@ CREATE TABLE `bookwebspiderinfo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of bookwebspiderinfo
--- ----------------------------
-INSERT INTO `bookwebspiderinfo` VALUES ('1', '1', 'http://m.biquge.com/21_21470/');
+
 
 
 -- ----------------------------
