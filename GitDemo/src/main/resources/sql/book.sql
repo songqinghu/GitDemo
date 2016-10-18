@@ -30,7 +30,6 @@ CREATE TABLE `bookwebspiderinfo` (
 
 
 
-
 -- ----------------------------
 -- Table structure for imagetype
 -- ----------------------------
