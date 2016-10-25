@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.git.search.lightning.bean.IndexBean;
+import com.git.search.lightning.bean.InvertedIndexEntries;
 import com.git.search.lightning.bean.TermFind;
 import com.git.search.lightning.segment.DocmentSegment;
 import com.google.common.io.Files;
@@ -38,12 +39,30 @@ public class Lighting {
              
             
         }
-        
+        long start = System.currentTimeMillis();
         Map<Integer, LinkedList<IndexBean>> termdic = TermFind.getTermdic();
         
-        System.out.println();
+        String term = "宋";
         
+        int hash = term.hashCode();
         
+        LinkedList<IndexBean> linkedList = termdic.get(hash);
+        
+        for (IndexBean indexBean : linkedList) {
+            
+            if(indexBean.getTerm().equals(term)){//找到搜索词
+                
+                List<InvertedIndexEntries> invertIndexs = indexBean.getInvertIndexs();
+                
+                for (InvertedIndexEntries temp : invertIndexs) {
+                        
+                    System.out.println(temp.getDocId() + " : " + temp.getStartIndexs());
+                }
+                
+            }
+        }
+        
+        System.out.println(System.currentTimeMillis() -start);
         
     }
 }

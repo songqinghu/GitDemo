@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.servlet.jsp.jstl.core.IndexedValueExpression;
+
 import com.git.lucene.NGram11TokenizerUtil;
 import com.git.search.lightning.bean.IndexBean;
 import com.git.search.lightning.bean.InvertedIndexEntries;
@@ -35,27 +37,87 @@ public class DocmentSegment {
         Set<String> keys = terms.keySet();
         for (String key : keys) {
             String term = terms.get(key);
-            Long start = Long.parseLong(key.split("-")[0]);
-
-            InvertedIndexEntries iie = new InvertedIndexEntries();
-            iie.setDocId(docId);
-            iie.getStartIndexs().add(start);
-            IndexBean indexBean = new IndexBean();
-            indexBean.setTerm(term);
-            indexBean.getInvertIndexs().add(iie);
-            int hashCode = term.hashCode();
-            LinkedList<IndexBean> linkedList = TermFind.getTermdic().get(hashCode);
-            if(linkedList==null || linkedList.size()==0){
-                linkedList = new LinkedList<IndexBean>();
+            if(term.equals("宋")){
+                System.out.println("");
             }
-            linkedList.add(indexBean);
-            TermFind.getTermdic().put(hashCode, linkedList);
+            Long start = Long.parseLong(key.split("-")[0]);
+            
+            //索引查询
+            int hash = term.hashCode();
+            LinkedList<IndexBean> link = TermFind.getTermdic().get(hash);
+            if(link==null || link.size()==0){ //第一次
+                link = new LinkedList<IndexBean>();
+                InvertedIndexEntries iie = new InvertedIndexEntries();
+                iie.setDocId(docId);
+                iie.getStartIndexs().add(start);
+                IndexBean indexBean = new IndexBean();
+                indexBean.setTerm(term);
+                indexBean.getInvertIndexs().add(iie);
+                
+                link.add(indexBean);
+                TermFind.getTermdic().put(hash, link);
+            }else{
+                //已经有了
+                boolean flag = false; //不含这个term
+                for (IndexBean indexBean : link) {
+                    if(indexBean.getTerm().equals(term)){//找到term
+                        List<InvertedIndexEntries> invertIndexs = indexBean.getInvertIndexs();
+                        boolean iFlag = false;//不同的docid需要不同处理
+                        for (InvertedIndexEntries invertedIndexEntries : invertIndexs) {
+                            
+                            long id = invertedIndexEntries.getDocId();
+                            if(docId ==id){
+                                invertedIndexEntries.getStartIndexs().add(start);
+                                iFlag =true;
+                            }
+                            
+                        }
+                        if(!iFlag){//新的docid
+                            InvertedIndexEntries entries = new InvertedIndexEntries();
+                            entries.setDocId(docId);
+                            entries.getStartIndexs().add(start);
+                            invertIndexs.add(entries);
+                        }
+                        flag =true;
+                    }
+                    
+                }
+                
+                //查找一遍还是不含有 --新建设
+                if(!flag){
+                    InvertedIndexEntries iie = new InvertedIndexEntries();
+                    iie.setDocId(docId);
+                    iie.getStartIndexs().add(start);
+                    IndexBean indexBean = new IndexBean();
+                    indexBean.setTerm(term);
+                    indexBean.getInvertIndexs().add(iie);
+                    
+                    link.add(indexBean);
+                }
+                
+            }
         }
         
-        
+        //归并 写入磁盘 ---先放在内存中 测试一下查找
         
         return null;
     }
+    /**
+     * @描述：合并内存中索引
+     * @return void
+     * @exception
+     * @createTime：2016年10月25日
+     * @author: songqinghu
+     */
+    public static void mergeIndex(){
+        
+        Map<Integer, LinkedList<IndexBean>> termdic = TermFind.getTermdic();
+        
+        
+        
+    }
+    
+    
     
     
     private final static AtomicInteger counterVal = new AtomicInteger(0);
