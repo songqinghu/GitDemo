@@ -25,7 +25,7 @@ public class Selenium2Example  {
         driver.get("http://weibo.com/minipublish");
         // 同样的事情也可以通过以下代码完成
         // driver.navigate().to("http://www.google.com");
-        Thread.sleep(30*1000);
+        Thread.sleep(60*1000);
         System.out.println("到达");
         // 找到搜索输入框
 //        WebElement element = driver.findElement(By.name("q"));
@@ -57,6 +57,6 @@ public class Selenium2Example  {
 //        System.out.println("Page title is: " + driver.getTitle());
 
         //关闭浏览器
-       // driver.quit();
+        driver.quit();
     }
 }
