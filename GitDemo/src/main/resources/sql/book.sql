@@ -104,6 +104,7 @@ CREATE TABLE `bookintro` (
   `url` varchar(100) DEFAULT NULL COMMENT  '下轮抓取图书章节列表的URL',
   `old_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片原始地址',
   `show_pic_url`  varchar(100) DEFAULT NULL COMMENT '图书图片展示地址',
+   `count`  bigint(20) DEFAULT '0' COMMENT '本书点击量',
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '抓取时的创建时间',
   `flag` int(11) DEFAULT '0' COMMENT '标识位,是否可用',
   `isspider` int(11) DEFAULT '0' COMMENT '是否爬取过章节目录,默认未爬取',
