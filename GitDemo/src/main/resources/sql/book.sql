@@ -94,6 +94,7 @@ DROP TABLE IF EXISTS `bookintro`;
 CREATE TABLE `bookintro` (
   `intro_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键,这本书唯一标识',
   `bweb_id` bigint(20) NOT NULL COMMENT '抓取的web站点对应的Id,对应web站点信息表,区分抓取站点的信息',
+   `bookTypeNum` bigint(20) NOT NULL COMMENT '图书分类id',
   `name` varchar(100) DEFAULT NULL COMMENT '图书名称',
   `author` varchar(100) DEFAULT NULL COMMENT '作者',
   `booktype` varchar(100) DEFAULT NULL COMMENT '图书类型',
@@ -111,5 +112,5 @@ CREATE TABLE `bookintro` (
   `preIntro_id` int(11) DEFAULT '0' COMMENT '对于同一本书,后抓取的标注出来前一本书的intro_id',
   PRIMARY KEY (`intro_id`),
   UNIQUE KEY `index_region_name` (`url`),
-  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`,isspider,newchapterId)
+  KEY `pre_id` (name,`bweb_id`,`url`,`updatedate`,`flag`,isspider,newchapterId,bookTypeNum)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
