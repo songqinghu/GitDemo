@@ -34,3 +34,14 @@ INSERT INTO `bookwebspiderinfo` VALUES ('16', '1', 'http://m.biquge.com/0_156/',
 INSERT INTO `bookwebspiderinfo` VALUES ('17', '1', 'http://m.biquge.com/1_1431/', '9');
 -- 霸王硬上弓
 INSERT INTO `bookwebspiderinfo` VALUES ('18', '1', 'http://m.biquge.com/28_28255/', '9');
+-- qu.la网站图书
+-- 不朽凡人 
+INSERT INTO `bookwebspiderinfo` VALUES ('1', '1', 'http://m.qu.la/book/18049/', '2');
+-- 永夜君王
+INSERT INTO `bookwebspiderinfo` VALUES ('2', '1', 'http://m.qu.la/book/635/', '1');
+-- 大主宰
+INSERT INTO `bookwebspiderinfo` VALUES ('3', '1', 'http://m.qu.la/book/176/', '1');
+-- 玄界之门
+INSERT INTO `bookwebspiderinfo` VALUES ('4', '1', 'http://m.qu.la/book/13189/', '2');
+
+
