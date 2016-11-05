@@ -46,16 +46,16 @@ INSERT INTO `bookwebspiderinfo` VALUES ('4', '1', 'http://m.qu.la/book/13189/', 
 -- 逆鳞
 INSERT INTO `bookwebspiderinfo` VALUES ('5', '1', 'http://m.qu.la/book/11896/', '3');
 -- 元气少年
-INSERT INTO `bookwebspiderinfo` VALUES ('7', '1', 'http://m.qu.la/book/19690/', '4');
+INSERT INTO `bookwebspiderinfo` VALUES ('6', '1', 'http://m.qu.la/book/19690/', '4');
 -- 赘婿
-INSERT INTO `bookwebspiderinfo` VALUES ('8', '1', 'http://m.qu.la/book/285/', '5');
+INSERT INTO `bookwebspiderinfo` VALUES ('7', '1', 'http://m.qu.la/book/285/', '5');
 -- 盗墓笔记
-INSERT INTO `bookwebspiderinfo` VALUES ('9', '1', 'http://m.qu.la/book/846/', '6');
+INSERT INTO `bookwebspiderinfo` VALUES ('8', '1', 'http://m.qu.la/book/846/', '6');
 -- 盛唐崛起
-INSERT INTO `bookwebspiderinfo` VALUES ('10', '1', 'http://m.qu.la/book/10982/', '7');
+INSERT INTO `bookwebspiderinfo` VALUES ('9', '1', 'http://m.qu.la/book/10982/', '7');
 -- 神级英雄
-INSERT INTO `bookwebspiderinfo` VALUES ('11', '1', 'http://m.qu.la/book/136/', '8');
+INSERT INTO `bookwebspiderinfo` VALUES ('10', '1', 'http://m.qu.la/book/136/', '8');
 -- 斗破苍穹之无上之境
-INSERT INTO `bookwebspiderinfo` VALUES ('12', '1', 'http://m.qu.la/book/1431/', '9');
+INSERT INTO `bookwebspiderinfo` VALUES ('11', '1', 'http://m.qu.la/book/1431/', '9');
 
 
