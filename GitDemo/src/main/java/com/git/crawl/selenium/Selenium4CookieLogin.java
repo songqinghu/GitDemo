@@ -25,45 +25,82 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @date: 2016年11月9日 上午10:53:35
  * Version:1.0
  */
-public class Selenium4Cookie  {
+public class Selenium4CookieLogin  {
     public static void main(String[] args) throws InterruptedException {
         // 创建了一个 Firefox driver 的实例
         // 注意，其余的代码依赖于接口而非实例
 //        WebDriver driver = new HtmlUnitDriver();
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\songqinghu\\Desktop\\chromedriver.exe");
         ChromeDriver driver = new ChromeDriver();
-        // 使用它访问 Google
-//        driver.get("http://www.baidu.com");
+
         driver.get("http://www.baidu.com");
-        // 同样的事情也可以通过以下代码完成
-        // driver.navigate().to("http://www.google.com");
-        Thread.sleep(60*1000);
-//        Set<Cookie> cookies = driver.manage().getCookies();
 
-        File file = new File("D:\\broswer.data");
-        try {
-            // delete file if exists
-            file.delete();
-            file.createNewFile();
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (Cookie ck : driver.manage().getCookies()) {
-                bw.write(ck.getName() + ";" + ck.getValue() + ";"
-                        + ck.getDomain() + ";" + ck.getPath() + ";"
-                        + ck.getExpiry() + ";" + ck.isSecure());
-                bw.newLine();
+        try 
+        {
+            File file=new File("D:\\broswer.data");
+            FileReader fr=new FileReader(file);
+            BufferedReader br=new BufferedReader(fr);
+            String line;
+            while((line=br.readLine())!= null)
+            {
+                StringTokenizer str=new StringTokenizer(line,";");
+                while(str.hasMoreTokens())
+                {
+                    String name=str.nextToken();
+                    String value=str.nextToken();
+                    String domain=str.nextToken();
+                    String path=str.nextToken();
+                    Date expiry=null;
+                    String dt;
+                    if(!(dt=str.nextToken()).equals(null))
+                    {
+//                        expiry=new Date(dt);
+//                        System.out.println();
+                    }
+                    boolean isSecure=new Boolean(str.nextToken()).booleanValue();
+                    Cookie ck=new Cookie(name,value,domain,path,expiry,isSecure);
+                    driver.manage().addCookie(ck);
+                }
             }
-            bw.flush();
-            bw.close();
-            fw.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("cookie write to file");
+            
+            
         }
-        System.out.println("到达");
-        driver.quit();
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        driver.get("http://www.baidu.com");
+      WebElement element = driver.findElement(By.linkText("默默不能知"));
+
+      Actions builder = new Actions(driver);
+
+      Action build = builder.moveToElement(element).click().build();
+      build.perform();
+    (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+        public Boolean apply(WebDriver d) {
+            //return d.findElement(By.xpath("//*[@id='pl_content_simplePublisher']/div/div[6]/div[3]/div/img")).getAttribute("src")!=null;
+            return true;
+        }
+    });
+    driver.get("http://tieba.baidu.com/f?kw=%E7%9B%9B%E5%94%90%E5%B4%9B%E8%B5%B7&fr=index");
+     WebElement title = driver.findElement(By.name("title"));
+     title.sendKeys("发个帖子试试");
+     Thread.sleep(20*1000);
+     WebElement submit = driver.findElement(By.linkText("发表"));
+
+     Actions bu = new Actions(driver);
+
+     Action b = bu.moveToElement(submit).click().build();
+     b.perform();
+       (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+           public Boolean apply(WebDriver d) {
+               //return d.findElement(By.xpath("//*[@id='pl_content_simplePublisher']/div/div[6]/div[3]/div/img")).getAttribute("src")!=null;
+               return true;
+           }
+       });
+     
+         Thread.sleep(90*1000);
         // 找到搜索输入框
 //        WebElement element = driver.findElement(By.name("q"));
 //        WebElement element = driver.findElement(By.linkText("图片"));
