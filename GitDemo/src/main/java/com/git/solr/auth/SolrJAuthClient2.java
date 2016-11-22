@@ -2,6 +2,7 @@ package com.git.solr.auth;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -23,8 +24,20 @@ import org.apache.solr.common.params.SolrParams;
 public class SolrJAuthClient2 {
 
     public static void main(String[] args) {
+        Properties p  = new Properties();
+        p.setProperty("zkDigestUsername",  "admin");
+        p.setProperty("zkDigestPassword", "admin");
+        p.setProperty("zkCredentialsProvider", "org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider");
+        p.setProperty("zkACLProvider", "org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider");
+          System.setProperties(p);
+        CloudSolrClient solrClient = new CloudSolrClient("10.125.137.111:2181,10.125.137.112:2181,10.125.137.113:2181");
         
-        
+        solrClient.connect();
+        System.out.println("ss");
+//        SolrParams q  = new SolrQuery();
+//        QueryRequest request = new QueryRequest(q  );
+//        request.setBasicAuthCredentials("", "");
+//        solrClient.request(request);
     }
     /**
      * 
