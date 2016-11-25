@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -32,31 +33,56 @@ public class GomeSuggestWordPageProcessor implements PageProcessor{
     private Site site = Site.
     		me().
     		setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36ss").
-    		setRetryTimes(5).setSleepTime(500);
+    		setRetryTimes(5).setSleepTime(100);
 
     @Override
     // process是定制爬虫逻辑的核心接口，在这里编写抽取逻辑
     public void process(Page page) {
         //["童装","40827952"]
         JSONArray a = JSON.parseArray(page.getJson().toString());
+        ArrayList<String> temp = new ArrayList<String>();
         for (Object aa : a) {
             
             if(aa.toString().indexOf("{\"cat\":")==-1){
                 String replace = aa.toString().replace("[", "").replace("]", "").replace("\"", "");            
                 String substring = replace.substring(0,replace.indexOf(","));
-                try {
-                    IOUtils.write(substring.getBytes(), new FileOutputStream(new File(fileName),true));
-                    IOUtils.write(IOUtils.LINE_SEPARATOR.getBytes(), new FileOutputStream(new File(fileName),true));
-                    
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                temp.add(substring);
+            }
+        }
+
+        for (int i = 0; i < temp.size(); i++) {
+            try {
+                IOUtils.write(temp.get(i).getBytes(), new FileOutputStream(new File(fileName),true));
+                IOUtils.write(IOUtils.LINE_SEPARATOR.getBytes(), new FileOutputStream(new File(fileName),true));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
             
         }
+        
+        if(temp.size()>8){
 
+            
+            String url = page.getUrl().toString();
+            //https://suggest.taobao.com/sug?code=utf-8&q=
+            int index = "http://api.search.gome.com.cn/p/suggest?from=headSearch&query=".length();
+            String query = url.substring(index, url.length());
+            if(query.length() <4){
+                String[] speeeds = {"q","w","e","r","t","y","u","i","o","p","a",
+                        "s","d","f","g","h","j","k","l",
+                        "z","x","c","v","b","n","m"};
+                
+                List<String> temps = new ArrayList<String>();
+                for (String add : speeeds) {
+                    temps.add(url+add);
+                }
+                page.addTargetRequests(temps);
+            }
+        }
+        
+        
 //        if(Integer.valueOf(totalPage.get(0)) > Integer.valueOf(currentPage.get(0))){
 //            Integer pagenum = Integer.valueOf(currentPage.get(0));
 //            String newUrl = page.getUrl().toString().replace("&s="+((pagenum-1)*20), "&s="+(pagenum*20));
@@ -95,52 +121,52 @@ public class GomeSuggestWordPageProcessor implements PageProcessor{
                                 "z","x","c","v","b","n","m"};
         long one = System.currentTimeMillis();
         for (String q : speeeds) {
-           
+            long temp = System.currentTimeMillis();
                   String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q;
                   Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
                   thread(7).run();
-        
+           System.out.println("the speeed is : "+q+"  end and time is :" + (System.currentTimeMillis() -temp) + " ms");
         }
         long two = System.currentTimeMillis();
         System.out.println("one end and time is :" + (two -one) + " ms");
-        for (String q : speeeds) {
-          for (String qq : speeeds) {
-                      
-                      String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q+qq;
-                      Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-                      thread(7).run();
-                  }
-        }
-        long three = System.currentTimeMillis();
-        System.out.println("two end and time is :" + (three -two) + " ms");
-        for (String q : speeeds) {
-          for (String qq : speeeds) {
-              for (String qqq : speeeds) {
-                      
-                      String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q+qq+qqq;
-                      Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-                      thread(7).run();
-              }
-          }
-          
-        }
-        long four = System.currentTimeMillis();
-        System.out.println("three end and time is :" + (four -three) + " ms");
-        for (String q : speeeds) {
-          for (String qq : speeeds) {
-              for (String qqq : speeeds) {
-                  for (String qqqq : speeeds) {
-                      
-                      String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q+qq+qqq+qqqq;
-                      Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-                      thread(7).run();
-                  }
-              }
-          }
-          
-        }
-        long five = System.currentTimeMillis();
-        System.out.println("four end and time is :" + (five -four) + " ms");
+//        for (String q : speeeds) {
+//          for (String qq : speeeds) {
+//                      
+//                      String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q+qq;
+//                      Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
+//                      thread(7).run();
+//                  }
+//        }
+//        long three = System.currentTimeMillis();
+//        System.out.println("two end and time is :" + (three -two) + " ms");
+//        for (String q : speeeds) {
+//          for (String qq : speeeds) {
+//              for (String qqq : speeeds) {
+//                      
+//                      String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q+qq+qqq;
+//                      Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
+//                      thread(7).run();
+//              }
+//          }
+//          
+//        }
+//        long four = System.currentTimeMillis();
+//        System.out.println("three end and time is :" + (four -three) + " ms");
+//        for (String q : speeeds) {
+//          for (String qq : speeeds) {
+//              for (String qqq : speeeds) {
+//                  for (String qqqq : speeeds) {
+//                      
+//                      String url ="http://api.search.gome.com.cn/p/suggest?from=headSearch&query="+q+qq+qqq+qqqq;
+//                      Spider.create(new GomeSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
+//                      thread(7).run();
+//                  }
+//              }
+//          }
+//          
+//        }
+//        long five = System.currentTimeMillis();
+//        System.out.println("four end and time is :" + (five -four) + " ms");
         
                 
 

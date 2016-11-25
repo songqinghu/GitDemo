@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -32,7 +33,7 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
     private Site site = Site.
     		me().
     		setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36ss").
-    		setRetryTimes(5).setSleepTime(500);
+    		setRetryTimes(5).setSleepTime(100);
 
     @Override
     // process是定制爬虫逻辑的核心接口，在这里编写抽取逻辑
@@ -53,6 +54,26 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
             }
         }
 
+        if(a.size()>9){
+            String url = page.getUrl().toString();
+            //https://suggest.taobao.com/sug?code=utf-8&q=
+            int index = "https://suggest.taobao.com/sug?code=utf-8&q=".length();
+            String query = url.substring(index, url.length());
+
+            if(query.length() <4){
+                String[] speeeds = {"q","w","e","r","t","y","u","i","o","p","a",
+                        "s","d","f","g","h","j","k","l",
+                        "z","x","c","v","b","n","m"};
+
+                
+                List<String> temp = new ArrayList<String>();
+                for (String add : speeeds) {
+                    temp.add(url+add);
+                }
+                page.addTargetRequests(temp);
+            }
+        }
+        
 //        if(Integer.valueOf(totalPage.get(0)) > Integer.valueOf(currentPage.get(0))){
 //            Integer pagenum = Integer.valueOf(currentPage.get(0));
 //            String newUrl = page.getUrl().toString().replace("&s="+((pagenum-1)*20), "&s="+(pagenum*20));
@@ -72,7 +93,7 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
           if(args.length>0 && args.length<2){
               fileName = args[0];
           }else{
-              fileName = "E:\\temp\\temp_suggest.txt";
+              fileName = "E:\\temp\\temp_tb_suggest.txt";
           }
         
 //        if(args.length>0 && args.length<2){
@@ -92,52 +113,56 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
 
            long one = System.currentTimeMillis();
            for (String q : speeeds) {
-                
+               
+               long temp = System.currentTimeMillis();
+               
                        String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q;
                        Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
                        thread(7).run();
+                       
+                       System.out.println("the speeed is : "+q+"  end and time is :" + (System.currentTimeMillis() -temp) + " ms");
             
            }
            long two = System.currentTimeMillis();
            System.out.println("one end and time is :" + (two -one) + " ms");
-           for (String q : speeeds) {
-               for (String qq : speeeds) {
-                           
-                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq;
-                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-                           thread(7).run();
-                       }
-           }
-           long three = System.currentTimeMillis();
-           System.out.println("two end and time is :" + (three -two) + " ms");
-           for (String q : speeeds) {
-               for (String qq : speeeds) {
-                   for (String qqq : speeeds) {
-                           
-                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq+qqq;
-                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-                           thread(7).run();
-                   }
-               }
-               
-           }
-           long four = System.currentTimeMillis();
-           System.out.println("three end and time is :" + (four -three) + " ms");
-           for (String q : speeeds) {
-               for (String qq : speeeds) {
-                   for (String qqq : speeeds) {
-                       for (String qqqq : speeeds) {
-                           
-                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq+qqq+qqqq;
-                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-                           thread(7).run();
-                       }
-                   }
-               }
-               
-           }
-           long five = System.currentTimeMillis();
-           System.out.println("four end and time is :" + (five -four) + " ms");
+//           for (String q : speeeds) {
+//               for (String qq : speeeds) {
+//                           
+//                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq;
+//                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
+//                           thread(7).run();
+//                       }
+//           }
+//           long three = System.currentTimeMillis();
+//           System.out.println("two end and time is :" + (three -two) + " ms");
+//           for (String q : speeeds) {
+//               for (String qq : speeeds) {
+//                   for (String qqq : speeeds) {
+//                           
+//                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq+qqq;
+//                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
+//                           thread(7).run();
+//                   }
+//               }
+//               
+//           }
+//           long four = System.currentTimeMillis();
+//           System.out.println("three end and time is :" + (four -three) + " ms");
+//           for (String q : speeeds) {
+//               for (String qq : speeeds) {
+//                   for (String qqq : speeeds) {
+//                       for (String qqqq : speeeds) {
+//                           
+//                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq+qqq+qqqq;
+//                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
+//                           thread(7).run();
+//                       }
+//                   }
+//               }
+//               
+//           }
+//           long five = System.currentTimeMillis();
+//           System.out.println("four end and time is :" + (five -four) + " ms");
             //抓完一个词,需要存到hbase中,且清空缓存
             //insertHbase();
 
