@@ -24,12 +24,12 @@ public class LeaderSelectorExample {
 		List<CuratorFramework> clients = Lists.newArrayList();
 		List<LeaderSelectorClient> examples = Lists.newArrayList();
 		try {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 2; i++) {
 				CuratorFramework client = ClientFactory.newClient();
 				LeaderSelectorClient example = new LeaderSelectorClient(client, "Client #" + i);
 				clients.add(client);
 				examples.add(example);
-
+				
 				client.start();
 				example.start();
 			}
@@ -37,7 +37,7 @@ public class LeaderSelectorExample {
 			Thread.sleep(10000);
 
 			System.out.println("----------关闭前5个客户端，再观察选举leader的结果-----------");
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 1; i++) {
 				clients.get(i).close();
 			}
 

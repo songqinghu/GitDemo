@@ -9,7 +9,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 public class ClientFactory {
 
 	public static CuratorFramework newClient() {
-		String connectionString = "192.168.11.56:2180,192.168.11.56:2181,192.168.11.56:2182";
+		String connectionString = "10.125.2.44:2181";
 		ExponentialBackoffRetry retryPolicy = new ExponentialBackoffRetry(1000, 3);
 		return CuratorFrameworkFactory.newClient(connectionString, retryPolicy);
 	}

@@ -18,28 +18,31 @@ public class LeaderLatchExample {
 		List<CuratorFramework> clients = Lists.newArrayList();
 		List<LeaderLatchClient> examples = Lists.newArrayList();
 		try {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 2; i++) {
 				CuratorFramework client = ClientFactory.newClient();
 				LeaderLatchClient example = new LeaderLatchClient(client, "Client #" + i);
 				clients.add(client);
 				examples.add(example);
-
+				
 				client.start();
 				example.start();
 			}
 
 			Thread.sleep(10000);
 
-			System.out.println("----------关闭前5个客户端，再观察选举leader的结果-----------");
-			for (int i = 0; i < 5; i++) {
-				clients.get(i).close();
-			}
-
+//			System.out.println("----------关闭前5个客户端，再观察选举leader的结果-----------");
+//			for (int i = 0; i < 5; i++) {
+//				clients.get(i).close();
+//			}
+			for (int i = 0; i < 2; i++) {
+                System.out.println(examples.get(i).isLeader());
+            }
 			// 让main程序一直监听控制台输入，不退出
 			new BufferedReader(new InputStreamReader(System.in)).readLine();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+		    System.out.println(e);
+//		    e.printStackTrace();
 		} finally {
 			for (LeaderLatchClient exampleClient : examples) {
 				CloseableUtils.closeQuietly(exampleClient);

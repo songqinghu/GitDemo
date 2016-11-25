@@ -10,6 +10,10 @@ import java.util.concurrent.Executors;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.leader.LeaderLatch;
 import org.apache.curator.framework.recipes.leader.LeaderLatchListener;
+import org.apache.curator.framework.state.ConnectionState;
+import org.apache.curator.framework.state.ConnectionStateListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * leader选举
@@ -17,6 +21,9 @@ import org.apache.curator.framework.recipes.leader.LeaderLatchListener;
  * @author shencl
  */
 public class LeaderLatchClient implements Closeable {
+    
+    private static Logger logger = LoggerFactory.getLogger(LeaderLatchClient.class);
+    
 	private final LeaderLatch leaderLatch;
 	private final String PATH = "/leaderlatch";
 	private static Executor executor = Executors.newCachedThreadPool();
@@ -27,12 +34,12 @@ public class LeaderLatchClient implements Closeable {
 		LeaderLatchListener latchListener = new LeaderLatchListener() {
 			@Override
 			public void isLeader() {
-				System.out.println("I am leader, my name is " + name);
+			    logger.info("I am leader, my name is " + name);
 			}
 
 			@Override
 			public void notLeader() {
-				System.out.println("I release my leader ship, my name is " + name);
+			    logger.info("i am not leader ,my name is :" + name);
 			}
 		};
 
