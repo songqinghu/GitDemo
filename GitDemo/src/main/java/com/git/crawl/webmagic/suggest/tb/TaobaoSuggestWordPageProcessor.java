@@ -74,12 +74,6 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
             }
         }
         
-//        if(Integer.valueOf(totalPage.get(0)) > Integer.valueOf(currentPage.get(0))){
-//            Integer pagenum = Integer.valueOf(currentPage.get(0));
-//            String newUrl = page.getUrl().toString().replace("&s="+((pagenum-1)*20), "&s="+(pagenum*20));
-//            System.out.println(newUrl);
-//            page.addTargetRequest(newUrl);
-//        }
     }
 
     @Override
@@ -95,18 +89,7 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
           }else{
               fileName = "E:\\temp\\temp_tb_suggest.txt";
           }
-        
-//        if(args.length>0 && args.length<2){
-//            initData(args[0]);
-//        }else if(args.length ==2){
-//            initData(args[0]);
-//            shopStartId = Long.parseLong(args[1]);
-//            shopId = shopStartId;
-//        }
-//        else{
-//            initData(null);
-//        }
-        
+
            String[] speeeds = {"q","w","e","r","t","y","u","i","o","p","a",
                                 "s","d","f","g","h","j","k","l",
                                 "z","x","c","v","b","n","m"};
@@ -125,103 +108,8 @@ public class TaobaoSuggestWordPageProcessor implements PageProcessor{
            }
            long two = System.currentTimeMillis();
            System.out.println("one end and time is :" + (two -one) + " ms");
-//           for (String q : speeeds) {
-//               for (String qq : speeeds) {
-//                           
-//                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq;
-//                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-//                           thread(7).run();
-//                       }
-//           }
-//           long three = System.currentTimeMillis();
-//           System.out.println("two end and time is :" + (three -two) + " ms");
-//           for (String q : speeeds) {
-//               for (String qq : speeeds) {
-//                   for (String qqq : speeeds) {
-//                           
-//                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq+qqq;
-//                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-//                           thread(7).run();
-//                   }
-//               }
-//               
-//           }
-//           long four = System.currentTimeMillis();
-//           System.out.println("three end and time is :" + (four -three) + " ms");
-//           for (String q : speeeds) {
-//               for (String qq : speeeds) {
-//                   for (String qqq : speeeds) {
-//                       for (String qqqq : speeeds) {
-//                           
-//                           String url ="https://suggest.taobao.com/sug?code=utf-8&q="+q+qq+qqq+qqqq;
-//                           Spider.create(new TaobaoSuggestWordPageProcessor()).addPipeline(new ConsolePipeline()).addUrl(url).
-//                           thread(7).run();
-//                       }
-//                   }
-//               }
-//               
-//           }
-//           long five = System.currentTimeMillis();
-//           System.out.println("four end and time is :" + (five -four) + " ms");
-            //抓完一个词,需要存到hbase中,且清空缓存
-            //insertHbase();
-
-        
-
         
     }
-    
-//    private static void insertHbase(){
-//        insertShop();
-//        
-//    }
-//    
-//    private static void insertShop(){
-//        
-//        List<HbaseDataEntity> lists = new ArrayList<HbaseDataEntity>();
-//        Set<String> keys = ShopNameLURCache.getShopNamesCache().keySet();
-//        for (String key : keys) {
-//            String id = shopId+"";
-//            shopId++;
-//            HbaseDataEntity entity = new HbaseDataEntity();
-//            entity.setNameSpace(null);
-//            entity.setTableName("shop_name");
-//            entity.setRowKey(id);
-//            Map<String, Map<String, Object>> columns = new HashMap<String, Map<String, Object>>();
-//            Map<String, Object> map = new HashMap<String, Object>();
-//            columns.put("bean", map);
-//            map.put("id", id);
-//            map.put("name", key);
-//            entity.setColumns(columns );
-//            lists.add(entity);
-//        }
-//        HBaseUtils.insertDataList(lists);
-//        ShopNameLURCache.getShopNamesCache().clear();
-//        if(shopId-shopStartId >=10000000){
-//            flag =true;
-//        }
-//    }
-//    
-    private static List<String> words;
-    
-    
-//    public static void initData(String textLocation) throws IOException{
-//        
-//        System.getProperties().setProperty("hbase.flag", "true");
-//        System.getProperties().setProperty("hbase.zookeeper.property.clientPort", "2182");
-//        System.getProperties().setProperty("hbase.zookeeper.quorum", "10.69.205.28");
-//        System.getProperties().setProperty("hbase.master", "10.69.205.28:8020");
-//        if(textLocation ==null){
-//            URL url = Thread.currentThread().getContextClassLoader().getResource("words.txt");
-//            words = FileUtils.readLines(new File(url.getPath()));
-//        }else{
-//            System.out.println(textLocation);
-//            words = FileUtils.readLines(new File(textLocation));
-//            System.out.println(words.get(0));
-//        }
-//        
-//    }
-    
     
     
     
