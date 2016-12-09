@@ -1,12 +1,7 @@
 package com.git.lucene.analyzer;
 
-import java.io.IOException;
-import java.io.Reader;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.Tokenizer;
-import org.apache.lucene.analysis.Analyzer.TokenStreamComponents;
 import org.apache.lucene.analysis.cn.smart.HMMChineseTokenizer;
 import org.apache.lucene.analysis.core.LowerCaseFilter;
 import org.apache.lucene.analysis.reverse.ReverseStringFilter;
@@ -32,7 +27,7 @@ public class MyOneAnaylzer  extends Analyzer{
     protected TokenStreamComponents createComponents(String fieldName) {
        
         //马尔科夫解析器
-        HMMChineseTokenizer source = new HMMChineseTokenizer();
+        MyOneTokenizer source = new MyOneTokenizer();
         //添加过滤器  -- tokenfilter 下
         TokenStream result = new ClassicFilter(source);
         result = new LowerCaseFilter(result);

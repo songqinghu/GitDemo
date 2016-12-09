@@ -65,14 +65,15 @@ public class OneAnalyzerDemo {
                 //添加属性信息  -- 分词内容
                 CharTermAttribute term = ts.addAttribute(CharTermAttribute.class);
                 // 词语的偏移量
-                OffsetAttribute offset = ts.addAttribute(OffsetAttribute.class);
+               // OffsetAttribute offset = ts.addAttribute(OffsetAttribute.class);
                 //词语类型
-                TypeAttribute typeAtt = ts.addAttribute(TypeAttribute.class);
+                //TypeAttribute typeAtt = ts.addAttribute(TypeAttribute.class);
                 
-                System.out.println("term :" + term.toString() +
-                        "  start offset : " + offset.startOffset()
-                        + "  end offset : " + offset.endOffset()
-                        + "  type : " + typeAtt.type());
+                System.out.println("term :" + term.toString() 
+                       // + "  start offset : " + offset.startOffset()
+                      //  + "  end offset : " + offset.endOffset()
+                      //  + "  type : " + typeAtt.type()
+                        );
                 
             }
             ts.reset();
