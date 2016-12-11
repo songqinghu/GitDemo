@@ -8,6 +8,9 @@ import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.util.Attribute;
+import org.junit.experimental.theories.Theories;
+
+import com.gargoylesoftware.htmlunit.html.HtmlIsIndex;
 /**
  * 
  * @Description: 我的分析器
@@ -17,7 +20,7 @@ import org.apache.lucene.util.Attribute;
  */
 public class MyOneTokenizer extends Tokenizer{
 
-    private static MyTernarySearchTrie dic = new MyTernarySearchTrie("E:\\java\\word\\dic\\WordList.txt");//字典树
+    private static MyTernarySearchTrie dic = new MyTernarySearchTrie("D:\\tmep\\words\\WordList.txt");//字典树
     
     private CharTermAttribute termAtt;//词属性
     private OffsetAttribute offset;//词属性
@@ -34,7 +37,8 @@ public class MyOneTokenizer extends Tokenizer{
     
     
     public MyOneTokenizer() {
-        addAttribute(CharTermAttribute.class);
+        this.termAtt = addAttribute(CharTermAttribute.class);
+        this.offset = addAttribute(OffsetAttribute.class);
         this.done = false;
     }
     
