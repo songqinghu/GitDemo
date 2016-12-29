@@ -3,6 +3,7 @@ package com.git.https;
 import java.io.IOException;
 
 import com.alibaba.fastjson.JSONObject;
+import com.git.utils.HttpClientUtil;
 
 public class HttpsDemo {
 
@@ -13,6 +14,7 @@ public class HttpsDemo {
         Integer object = (Integer) JSONObject.parseObject(json).getJSONObject("data").get("userQuantity");
         
         System.out.println(object);
+        
         
         
     }
