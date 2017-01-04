@@ -13,11 +13,11 @@ import org.assertj.core.util.ToString;
 public class StringSearch {
 
     public static void main(String[] args) {
-        String[] keywords = {"苍井空","毛泽东","高家宝","高家欢","苍劲空","井空天下","我的井空"};
+        String[] keywords = {"我是好人","我是坏人","好人","坏人"};
         StringSearch stringSearch = new StringSearch(keywords);
-        StringSearchResult[] findAll = stringSearch.findAll("高家宝在电脑里看苍井空天下的电影,还说自己在看毛泽东思想这本书!高家欢很不乐意啊,要看苍劲空");
+        StringSearchResult[] findAll = stringSearch.findAll("我是好人吗?这事需要问问自己,人能分成好人坏人吗?这恐怕谁也无法解答");
         for (StringSearchResult stringSearchResult : findAll) {
-            System.out.println(stringSearchResult.keyword());
+            System.out.println(stringSearchResult.keyword() + " : " + stringSearchResult.index());
         }
         System.out.println(stringSearch.toString());
     }

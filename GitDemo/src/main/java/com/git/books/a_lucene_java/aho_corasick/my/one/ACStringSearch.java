@@ -1,4 +1,4 @@
-package com.git.books.a_lucene_java.aho_corasick.my;
+package com.git.books.a_lucene_java.aho_corasick.my.one;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -35,7 +35,7 @@ public class ACStringSearch {
          //设置回退引用
          addFailure();
      }
-    //逐层设置回退节点   
+    //逐层设置失败指针   
     private void addFailure() {
         ArrayList<TreeNode> nodes = new ArrayList<TreeNode>();
         //设置第二层节点的回退节点为根节点且保存该节点进行遍历循环
@@ -63,7 +63,7 @@ public class ACStringSearch {
                     //存在回退节点
                     treeNode.lastNode = r.getSonNode(c);
                     for (String result : treeNode.lastNode.getResults()) {
-                        r.addResult(result);
+                        treeNode.addResult(result);
                     }
                 }
                 //下次循环
@@ -112,7 +112,7 @@ public class ACStringSearch {
         
         while(index<text.length()){
             TreeNode temp =null;
-            while(temp!=null){
+            while(temp==null){
                 temp = mid.getSonNode(text.charAt(index));
                 if(mid ==root){
                     break;
