@@ -192,6 +192,7 @@ public class MyACStringFilter {
         
         //添加字符结果
         public void addResult(String result){
+            if(results.contains(result)) return;
             results.add(result);
         }
         

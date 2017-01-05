@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import com.git.books.a_lucene_java.aho_corasick.StringSearchResult;
+
 /**
  * <p>Title: MyOneACSearchTest.java</p>
- * <p>Description:测试 一个小时写一个ac自动机 </p>
+ * <p>Description:ac自动机 </p>
  * <p>Copyright: Copyright (c) 2017</p>
  * <p>Company: Sage</p>
  * @author 五虎将
@@ -15,6 +17,17 @@ import java.util.Iterator;
  */
 public class MyOneACSearchTest {
 
+    public static void main(String[] args) {
+        
+        String[] keywords = new String[]{"我是好人","我是坏人","好人","坏人","世界","那么大","世界那么大","大"};
+        MyOneACSearchTest search = new MyOneACSearchTest(keywords);
+        StringSearchResult[] findAll = search.findAll("我是好人吗?这事需要问问自己,人能分成好人坏人吗?这恐怕谁也无法解答.世界那么大,给你的想法那么大,我们世界里,只能想想大而已");
+        for (StringSearchResult result : findAll) {
+            System.out.println(result.keyword() + " : " +result.index());
+        }
+        
+    }
+    
 	//构建树
 	//设置失败指针
 	//搜索过程
@@ -24,6 +37,37 @@ public class MyOneACSearchTest {
 		addFailure();
 	}
 	private TreeNode root;
+	
+	//查找全部的模式串
+	public StringSearchResult[] findAll(String text){
+	    //可以找到 转移到下个节点 不能找到在失败指针节点中查找直到为root节点
+	    ArrayList<StringSearchResult> results = new ArrayList<StringSearchResult>();
+	    int index = 0;
+	    TreeNode mid = root;
+	    while(index <text.length()){
+	        
+	        TreeNode temp = null;
+	        
+	        while(temp ==null){
+	            temp = mid.getSonNode(text.charAt(index));
+	            if(mid ==root){
+	                break;
+	            }
+	            if(temp==null){
+	                mid = mid.failure;
+	            }
+	        }
+	        //mid为root 再次进入循环 不需要处理  或者 temp不为空找到节点 节点位移
+	        if(temp!=null) mid = temp;
+	        
+	        for (String result : mid.getResults()) {
+                results.add(new StringSearchResult(index - result.length() + 1, result));
+            }
+	        index++;
+	    }
+	    return results.toArray(new StringSearchResult[results.size()]);
+	}
+	
 	
 	private void addFailure() {
 		//设置二层失败指针为根节点 收集三层节点
@@ -41,7 +85,7 @@ public class MyOneACSearchTest {
 		while(mid.size()>0){
 			ArrayList<TreeNode> temp = new ArrayList<TreeNode>();//子节点收集器
 			
-			for (TreeNode node : temp) {
+			for (TreeNode node : mid) {
 				
 				TreeNode r = node.getParent().failure;
 				
@@ -54,6 +98,10 @@ public class MyOneACSearchTest {
 					node.failure = root;
 				}else{
 					node.failure = r.getSonNode(node.getChar());
+					//重叠后缀的包含
+					for (String result : node.failure.getResults()) {
+                        node.addResult(result);
+                    }
 				}
 				
 				//收集子节点
@@ -64,7 +112,7 @@ public class MyOneACSearchTest {
 			}
 			mid = temp;
 		}
-		
+		root.failure = root;
 	}
 
 	private void buildTree(String[] keywords) {
@@ -134,7 +182,7 @@ public class MyOneACSearchTest {
 		
 		//添加一个结果到结果字符中
 		public void addResult(String result){
-			if(!result.contains(result)) results.add(result);
+			if(!results.contains(result)) results.add(result);
 		}
 		
 		//获取字符
