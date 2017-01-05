@@ -54,7 +54,8 @@ public class OneAnalyzerDemo {
     public void testMyOneAnaylzer() throws IOException{
         
         Analyzer analyzer = new MyOneAnaylzer(); //创建中文分词器
-        for (int i = 0; i < 10; i++) {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 1; i++) {
             //添加 要字段 和待分词内容
             TokenStream ts = analyzer.tokenStream("test", new StringReader("这是第一个分词尝试语句 this My one test"));
             //重置
@@ -78,6 +79,8 @@ public class OneAnalyzerDemo {
             }
             ts.reset();
         }
+        long end = System.currentTimeMillis();
+        System.out.println("this time is " + (end -start) +" ms") ;
     }
     
     
