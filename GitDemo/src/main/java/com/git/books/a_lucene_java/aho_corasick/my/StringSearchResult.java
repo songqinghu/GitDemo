@@ -1,4 +1,4 @@
-package com.git.books.a_lucene_java.aho_corasick;
+package com.git.books.a_lucene_java.aho_corasick.my;
 /**
  * 
  * @Description: 查询结果类

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-import com.git.books.a_lucene_java.aho_corasick.StringSearchResult;
+import com.git.books.a_lucene_java.aho_corasick.my.StringSearchResult;
 
 /**
  * @Description: 基于AC自动机的字符串中敏感词识别

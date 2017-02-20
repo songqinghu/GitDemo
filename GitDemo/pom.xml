@@ -194,7 +194,7 @@
       <dependency>
 			<groupId>org.apache.solr</groupId>
 			<artifactId>solr-solrj</artifactId>
-			<version>5.5.0</version>
+			<version>6.4.1</version>
 		</dependency>
 	   <dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -351,6 +351,12 @@
     <version>4.0.92</version>
 </dependency>
 
+<!-- 状态机 -->
+<dependency>
+    <groupId>dk.brics.automaton</groupId>
+    <artifactId>automaton</artifactId>
+    <version>1.11-8</version>
+</dependency>
 
 	</dependencies>
 	
