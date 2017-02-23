@@ -1,4 +1,4 @@
-package com.git.books.b_design_patterns.a_abstract_factroy;
+package com.git.books.b_design_patterns.a_abstract_factroy.car;
 /**
  * 
  * @Description: 抽象工厂可构造对象列表
@@ -8,11 +8,7 @@ package com.git.books.b_design_patterns.a_abstract_factroy;
  */
 public enum SomeThingEnums {
 
-    
-     plane,bicycle,car
-    
-    
-    
-    
+    //引擎,轮胎
+    engine,tyre
     
 }
