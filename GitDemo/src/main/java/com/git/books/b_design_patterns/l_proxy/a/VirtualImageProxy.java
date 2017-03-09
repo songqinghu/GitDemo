@@ -1,7 +1,5 @@
 package com.git.books.b_design_patterns.l_proxy.a;
 
-import com.sun.mail.handlers.image_gif;
-
 /**
  * @Description: 图片虚拟代理
  * @author: songqinghu

@@ -6,9 +6,6 @@ package com.git.books.b_design_patterns.l_proxy.a;
  * Version:1.0
  */
 public interface ImageProxy {
-
-    
-    
     
     /**
      * @描述：展示图片
