@@ -1,7 +1,5 @@
 package com.git.books.b_design_patterns.u_Strategy;
 
-import java.util.Arrays;
-
 /**
  * @Description: 策略模式测试类
  * @author: songqinghu
