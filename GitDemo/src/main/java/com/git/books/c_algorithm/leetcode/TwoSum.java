@@ -1,5 +1,7 @@
 package com.git.books.c_algorithm.leetcode;
 
+import java.util.HashMap;
+
 //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 //
 //You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -19,12 +21,12 @@ public class TwoSum {
         int[] nums = new int[]{-3,4,3,90};
         int target = 0;
         
-        int[] twoSum = twoSum(nums, target);
+        int[] twoSum = twoSumForHash(nums, target);
         for (int i : twoSum) {
             System.out.println(i);
         }
     }
-    
+    /** the one method */
     public static int[] twoSum(int[] nums, int target) {
         
         //get two new array 
@@ -37,8 +39,23 @@ public class TwoSum {
                 }
             }
         }
-        
-        
-        return null;
+        throw new IllegalArgumentException("No two sum solution");
     }
+    
+    /** the two method */
+    public static int[] twoSumForHash(int[] nums,int target){
+        
+        HashMap<Integer, Integer> map = new HashMap<Integer,Integer>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement),i};
+            }
+            map.put(nums[i], i);
+        }
+        
+        throw new IllegalArgumentException("No two sum solution");
+    }
+    
 }
